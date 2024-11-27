@@ -5,4 +5,7 @@
 
 Character createCharacter();
 
+std::string selectClass();
+std::string selectName();
+
 #endif

@@ -7,7 +7,6 @@ int main() {
 
     Character player = createCharacter();
 
-    std::cout << "Ah " << player.getName() << " is a great name!"  <<std::endl;
 
     return 0;
 }

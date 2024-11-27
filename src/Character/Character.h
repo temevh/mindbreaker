@@ -6,19 +6,20 @@
 class Character{
     public:
         //Constructor
-        Character(const std::string& name);
+        Character(const std::string& charName, const std::string& charClass);
 
         //Getters
-        std::string getName() const;
+        std::string getCharName() const;
+        std::string getCharClass() const;
 
         //Setters
-        void setName(const std::string& name);
+        void setCharName(const std::string& charName);
+        void setCharClass(const std::string& charClass);
 
 
     private:
-        std::string name;
-
-
+        std::string charName;
+        std::string charClass;
 
 };
 

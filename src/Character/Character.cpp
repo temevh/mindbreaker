@@ -1,16 +1,24 @@
 #include "Character.h"
 
 
-Character::Character(const std::string& name)
-    : name(name){}
+Character::Character(const std::string& charName, const std::string& charClass)
+    : charName(charName), charClass(charClass){}
 
 //Getters
-std::string Character::getName() const {
-    return name;
+std::string Character::getCharName() const {
+    return charName;
+}
+
+std::string Character::getCharClass() const {
+    return charClass;
 }
 
 
 //Setters
-void Character::setName(const std::string& name) {
-    this->name = name;
+void Character::setCharName(const std::string& charName) {
+    this->charName = charName;
+}
+
+void Character::setCharClass(const std::string& charClass) {
+    this->charClass = charClass;
 }
