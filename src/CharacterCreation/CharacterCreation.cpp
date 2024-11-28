@@ -26,10 +26,11 @@ Character createCharacter()
     char* classes[4] = {
         "Tech priest", "Cyber soldier", "Net assassin", "Space Marine"
     };
+    std::string prompt = "Select your class";
     
     std::string charName = selectName();
     clearScreen();
-    std::string charClass = selectionMenu(classes, 4);
+    std::string charClass = selectionMenu(prompt, classes, 4);
     clearScreen();
 
     character.setCharName(charName);

@@ -3,7 +3,7 @@
 
 #include <string>
 
-std::string selectionMenu(char* options[], int numChoices);
+std::string selectionMenu(std::string prompt, char* options[], int numChoices);
 void clearScreen();
 
 #endif

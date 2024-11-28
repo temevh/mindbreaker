@@ -1,16 +1,15 @@
 #include <iostream>
 #include "Character/Character.h"
 #include "CharacterCreation/CharacterCreation.h"
+#include "utils/UtilFunctions.h"
 
 int main() {
-    std::cout << "Welcome to Mindbreaker!" << std::endl;
-
     Character player = createCharacter();
-    char ready;
+    std::string prompt = "Are you ready to begin your adventure?";
+    char* options[2] = {"yes", "no"};
 
-    std::cout << "\nAre you ready to begin your adventure? (y/n) " << std::endl;
-    std::cin >> ready;
-    if (ready == 'y') {
+    std::string ready = selectionMenu(prompt, options, 2);
+    if (ready == "y") {
         std::cout << "\nGood" << std::endl;
         //Go to chapter one
     } else {

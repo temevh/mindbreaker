@@ -38,13 +38,13 @@ char getch() {
     return buf;
 }
 
-std::string selectionMenu(char* options[], int numChoices) {
+std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
     int selected = 0;
     bool selecting = true;
 
     while (selecting) {
         clearScreen();
-        std::cout << "Select your class" << std::endl;
+        std::cout << prompt << std::endl;
         for (int i = 0; i < numChoices; ++i) {
             if (i == selected) {
                 std::cout << "> " << options[i] << std::endl;
