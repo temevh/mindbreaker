@@ -22,10 +22,14 @@ std::string selectName () {
 Character createCharacter()
 {
     Character character("", "", 100, 100);
+
+    char* classes[4] = {
+        "Tech priest", "Cyber soldier", "Net assassin", "Space Marine"
+    };
     
     std::string charName = selectName();
     clearScreen();
-    std::string charClass = selectClass();
+    std::string charClass = selectionMenu(classes, 4);
     clearScreen();
 
     character.setCharName(charName);

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <termios.h>
 #include <unistd.h>
+#include<array> 
+
 #include "UtilFunctions.h"
 
 #define KEY_UP 65    
@@ -36,12 +38,8 @@ char getch() {
     return buf;
 }
 
-std::string selectClass() {
-    const char* classes[4] = {
-        "Tech priest", "Cyber soldier", "Net assassin", "Space Marine"
-    };
+std::string selectionMenu(char* options[], int numChoices) {
     int selected = 0;
-    int numChoices = 4;
     bool selecting = true;
 
     while (selecting) {
@@ -49,9 +47,9 @@ std::string selectClass() {
         std::cout << "Select your class" << std::endl;
         for (int i = 0; i < numChoices; ++i) {
             if (i == selected) {
-                std::cout << "> " << classes[i] << std::endl;
+                std::cout << "> " << options[i] << std::endl;
             } else {
-                std::cout << "  " << classes[i] << std::endl;
+                std::cout << "  " << options[i] << std::endl;
             }
         }
 
@@ -75,6 +73,6 @@ std::string selectClass() {
         }
     }
 
-    std::cout << "Selected: " << classes[selected] << std::endl;
-    return classes[selected];
+    std::cout << "Selected: " << options[selected] << std::endl;
+    return options[selected];
 }
