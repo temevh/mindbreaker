@@ -4,9 +4,9 @@
 #include <iostream>
 
 #include "../utils/UtilFunctions.h"
+#include "Chapter_one_events.h"
 
 using json = nlohmann::json;
-
 
 void chapterOneMain() {
     std::string fileName = "chapter_one_text.json";
@@ -14,10 +14,11 @@ void chapterOneMain() {
     nlohmann::json dialogueData = loadJsonFromFile(fileName);
 
     writeText(dialogueData["intro"]);
-    pressEnter();
-    writeText(dialogueData["backstoryOne"]);
-    pressEnter();
-    writeText(dialogueData["backstoryTwo"]);
-    pressEnter();
+    writeText(dialogueData["backstory_1"]);
+    writeText(dialogueData["backstory_2"]);
+    writeText(dialogueData["backstory_3"]);
+    
+    checkPocket();
+
 
 }

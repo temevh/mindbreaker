@@ -81,7 +81,7 @@ std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
 }
 
 void pressEnter(){
-    std::cout << "\nPress Enter to Continue \n";
+    std::cout << "\nPress ENTER to Continue \n";
     std::cin.ignore();
     clearScreen();
 }
@@ -93,7 +93,7 @@ void writeText(std::string text){
         std::this_thread::sleep_for(std::chrono::milliseconds(30));
     }
     std::cout << std::endl;
-
+    pressEnter();
 }
 
 nlohmann::json loadJsonFromFile(const std::string& fileName){
