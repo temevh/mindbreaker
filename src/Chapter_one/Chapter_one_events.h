@@ -4,5 +4,7 @@
 #include <string>
 
 std::string checkPocket();
+void twoDoors();
+int numbersMinigame();
 
 #endif

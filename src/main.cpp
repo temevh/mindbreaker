@@ -5,6 +5,7 @@
 #include "Chapter_one/Chapter_one_main.h"
 
 int main() {
+    initializeRandomSeed();
     Character player = createCharacter();
     /*
     std::string prompt = "Are you ready to begin your adventure?";

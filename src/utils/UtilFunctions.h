@@ -9,5 +9,7 @@ void clearScreen();
 void pressEnter();
 void writeText(std::string text);
 nlohmann::json loadJsonFromFile(const std::string& fileName);
+int generateRandomNumber(int maxNumber);
+void initializeRandomSeed();
 
 #endif

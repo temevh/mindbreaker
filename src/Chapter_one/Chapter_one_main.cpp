@@ -2,6 +2,7 @@
 #include <fstream>
 #include "nlohmann/json.hpp"
 #include <iostream>
+#include <string> 
 
 #include "../utils/UtilFunctions.h"
 #include "Chapter_one_events.h"
@@ -13,12 +14,21 @@ void chapterOneMain() {
 
     nlohmann::json dialogueData = loadJsonFromFile(fileName);
 
+    /*
     writeText(dialogueData["intro"]);
-    writeText(dialogueData["backstory_1"]);
-    writeText(dialogueData["backstory_2"]);
-    writeText(dialogueData["backstory_3"]);
-    
-    checkPocket();
+    for (int i = 1; i<3; i++){
+        std::string line = "backstory_" + std::to_string(i);
+        writeText(dialogueData[line]);
+    }
 
+
+
+    checkPocket();
+    writeText(dialogueData["getUp"]);
+    writeText(dialogueData["twoDoors"]);
+    twoDoors();
+    writeText(dialogueData["doorOpened"]);
+    */
+    numbersMinigame();
 
 }

@@ -6,6 +6,7 @@
 #include <chrono>
 #include<array> 
 #include <fstream>
+#include <cstdlib>
 
 #include "UtilFunctions.h"
 
@@ -87,6 +88,7 @@ void pressEnter(){
 }
 
 void writeText(std::string text){
+    clearScreen();
     std::string s = text;
     for(const auto c: s){
         std::cout << c << std::flush;
@@ -112,4 +114,13 @@ nlohmann::json loadJsonFromFile(const std::string& fileName){
     }
 
     return jsonData;
+}
+
+void initializeRandomSeed() {
+    srand(static_cast<unsigned int>(time(0)));
+}
+
+int generateRandomNumber(int maxNumber){
+    int num = rand() % maxNumber;
+    return num;
 }
