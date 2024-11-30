@@ -22,7 +22,7 @@ int main() {
     */
     
    
-   chapterOneMain();
+   chapterOneMain(player);
 
 
     return 0;

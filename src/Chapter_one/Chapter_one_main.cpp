@@ -7,9 +7,11 @@
 #include "../utils/UtilFunctions.h"
 #include "Chapter_one_events.h"
 
+#include "../Character/Character.h"
+
 using json = nlohmann::json;
 
-void chapterOneMain() {
+void chapterOneMain(Character& player) {
     std::string fileName = "chapter_one_text.json";
 
     nlohmann::json dialogueData = loadJsonFromFile(fileName);
@@ -21,14 +23,18 @@ void chapterOneMain() {
         writeText(dialogueData[line]);
     }
 
-
-
-    checkPocket();
+    checkPocket(player);
     writeText(dialogueData["getUp"]);
     writeText(dialogueData["twoDoors"]);
-    twoDoors();
+    twoDoors(player);
     writeText(dialogueData["doorOpened"]);
     */
-    numbersMinigame();
-
+    int result = numbersMinigame(player);
+    if (result == 1){
+        writeText(dialogueData["numbersCorrect"]);
+        std:: cout << player.getCharSanity() << std::endl;
+    }else if (result == 0){
+        writeText(dialogueData["numbersIncorrect"]);
+        std:: cout << player.getCharSanity() << std::endl;
+    }
 }

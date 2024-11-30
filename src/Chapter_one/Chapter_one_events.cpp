@@ -1,8 +1,11 @@
 #include <string>
 #include <stdio.h>
 #include <iostream>
+#include <unistd.h>
+#include <sstream>
 
 #include "../utils/UtilFunctions.h"
+#include "../Character/Character.h"
 
 std::string checkPocket() {
     std::string prompt = "Check your pocket?";
@@ -26,9 +29,10 @@ void twoDoors(){
     //Save users choices and use to add randomness?
 }
 
-int numbersMinigame(){
+int numbersMinigame(Character& player){
     clearScreen();
-    int numbers[5];
+    int numbers[5]; //Change based on difficulty?
+    int playerNumbers[5];
     for (int i = 0; i < 5; ++i){
         numbers[i] = generateRandomNumber(10);
     }
@@ -40,7 +44,34 @@ int numbersMinigame(){
         std::cout << num << std::endl;
     }
     std::cout << std::endl;
+    sleep(3);
+    clearScreen();
+    std::cout << "THE NUMBERS!! WHAT WERE THEY??\n" << std::endl;
+    std::cout << "The numbers were: " << std::endl;
+    
+    std::string input;
+    std::getline(std::cin, input);
+    std::stringstream ss(input);
 
-    return 0;
+    for (int i = 0; i < 5; ++i) {
+        ss >> playerNumbers[i];
+    }
+    
+    bool correct = true;
+    for (int i = 0; i < 5; ++i){
+        if (playerNumbers[i] != numbers[i]){
+            correct = false;
+            break;
+        }
+    }
+    
+    if (correct){
+        return 1;
+    } else {
+        player.setCharSanity(player.getCharSanity() - 1);
+        return 0;
+    }
+
+    return 1;
 }
 

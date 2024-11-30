@@ -5,5 +5,7 @@
   "backstory_3": "The only things in the room are you, an annoying flickering light in the ceiling and two doors on one of the walls of the room.\n\nAs you start to get up from the cold concrete floor, you feel something in your pocket...",
   "getUp": "You get up from the floor and stretch your legs. Everything feels a bit off but you can't put your finger on anything specific.\n\nYou approach the two doors.",
   "twoDoors": "The doors have crudely drawn symbols on them.\nThe left one has a drawing of a flower on it.\nThe right one seems to have a skull drawn on it.",
-  "doorOpened": "As soon as you touch the doorknob you feel a horrible sting and your vision goes black"
+  "doorOpened": "As soon as you touch the doorknob you feel a horrible sting and your vision goes black",
+  "numbersCorrect" : "You regain your vision and feel oddly light. Your headache also seems to have eased.",
+  "numbersIncorrect" : "You regain your vision but everything feels a bit foggy. Your headache is still crushing your brain from all sides."
   }
