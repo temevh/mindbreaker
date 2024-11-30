@@ -5,6 +5,7 @@
 #include <thread>
 #include <chrono>
 #include<array> 
+#include <fstream>
 
 #include "UtilFunctions.h"
 
@@ -82,14 +83,33 @@ std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
 void pressEnter(){
     std::cout << "\nPress Enter to Continue \n";
     std::cin.ignore();
+    clearScreen();
 }
 
 void writeText(std::string text){
     std::string s = text;
     for(const auto c: s){
         std::cout << c << std::flush;
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        std::this_thread::sleep_for(std::chrono::milliseconds(30));
     }
     std::cout << std::endl;
 
+}
+
+nlohmann::json loadJsonFromFile(const std::string& fileName){
+    std::ifstream file(fileName);
+    nlohmann::json jsonData;
+
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << fileName << std::endl;
+        return jsonData; // return an empty JSON if the file can't be opened
+    }
+
+    try {
+        file >> jsonData; // Parse the JSON file
+    } catch (const nlohmann::json::parse_error& e) {
+        std::cerr << "Parse error: " << e.what() << std::endl;
+    }
+
+    return jsonData;
 }

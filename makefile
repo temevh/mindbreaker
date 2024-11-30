@@ -1,8 +1,7 @@
-# Compiler
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -Wall -std=c++11
+CXXFLAGS = -Wall -std=c++11 -Iinclude -Iexternal
 
 # Directories
 SRC_DIR = src
@@ -33,5 +32,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
+# Run the program (ensure correct working directory for JSON file access)
+run: $(TARGET)
+	cd $(SRC_DIR) && ./$(TARGET)
+
 # Phony targets
-.PHONY: all clean
+.PHONY: all clean run

@@ -48,5 +48,11 @@
         "ctime": "cpp",
         "ratio": "cpp",
         "thread": "cpp"
-    }
+    },
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/include",
+        "${workspaceFolder}/src",
+        "/usr/include",
+        "/usr/local/include"
+    ],
 }
