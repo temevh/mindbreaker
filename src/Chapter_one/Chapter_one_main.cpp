@@ -15,21 +15,18 @@ void chapterOneMain(Character& player) {
     std::string fileName = "chapter_one_text.json";
 
     nlohmann::json dialogueData = loadJsonFromFile(fileName);
-
-    int sanity = 7;
-
     
-    writeText(dialogueData["intro"], sanity);
+    writeText(dialogueData["intro"], 10);
     for (int i = 1; i<3; i++){
         std::string line = "backstory_" + std::to_string(i);
-        writeText(dialogueData[line], sanity);
+        writeText(dialogueData[line], player.getCharSanity());
     }
 
     checkPocket();
-    writeText(dialogueData["getUp"], sanity);
-    writeText(dialogueData["twoDoors"], sanity);
+    writeText(dialogueData["getUp"], player.getCharSanity());
+    writeText(dialogueData["twoDoors"], player.getCharSanity());
     twoDoors();
-    writeText(dialogueData["doorOpened"], sanity);
+    writeText(dialogueData["doorOpened"], player.getCharSanity());
     
     /*
     int result = numbersMinigame(player);
