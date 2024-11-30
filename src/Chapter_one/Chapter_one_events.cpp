@@ -13,9 +13,9 @@ std::string checkPocket() {
 
     std::string checked = selectionMenu(prompt, options, 2);
     if(checked == "no"){
-        writeText("Whatever, its most likely empty anyways.");
+        writeText("Whatever, its most likely empty anyways.", 10);
     }else if(checked == "yes"){
-        writeText("It's empty. Guess I was just imagining stuff.");
+        writeText("It's empty. Guess I was just imagining stuff.", 10);
     }
     return checked;
 }

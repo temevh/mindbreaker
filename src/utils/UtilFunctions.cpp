@@ -87,12 +87,24 @@ void pressEnter(){
     clearScreen();
 }
 
-void writeText(std::string text){
+void writeText(std::string text, int sanity){
     clearScreen();
     std::string s = text;
-    for(const auto c: s){
-        std::cout << c << std::flush;
-        std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    if(sanity == 10){
+        for(const auto c: s){
+            std::cout << c << std::flush;
+            std::this_thread::sleep_for(std::chrono::milliseconds(30));
+        }
+    }else if (sanity < 10){
+        for(const auto c: s){
+            if(generateRandomNumber(sanity) > 0){
+                std::cout << c << std::flush;
+                std::this_thread::sleep_for(std::chrono::milliseconds(30));
+            }else{
+                std::cout << " " << std::flush;
+                std::this_thread::sleep_for(std::chrono::milliseconds(30));
+            }
+        }
     }
     std::cout << std::endl;
     pressEnter();
