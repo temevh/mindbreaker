@@ -40,6 +40,7 @@ Character createCharacter()
     std::cout << "for a fierce " << charClass << " like you." << std::endl;
     std::cout << "For now you are healthy with " << character.getCharHealth() << " HP and ";
     std::cout << "you mind is also in good shape with " << character.getCharSanity() << " sanity" << std::endl;
+    pressEnter();
 
     return character;
 }

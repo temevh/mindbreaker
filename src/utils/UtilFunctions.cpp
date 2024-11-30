@@ -73,6 +73,11 @@ std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
         }
     }
 
-    std::cout << "Selected: " << options[selected] << std::endl;
+    //std::cout << "Selected: " << options[selected] << std::endl;
     return options[selected];
+}
+
+void pressEnter(){
+    std::cout << "\nPress Enter to Continue \n";
+    std::cin.ignore();
 }
