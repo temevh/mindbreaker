@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <termios.h>
 #include <unistd.h>
+#include <thread>
+#include <chrono>
 #include<array> 
 
 #include "UtilFunctions.h"
@@ -80,4 +82,14 @@ std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
 void pressEnter(){
     std::cout << "\nPress Enter to Continue \n";
     std::cin.ignore();
+}
+
+void writeText(std::string text){
+    std::string s = text;
+    for(const auto c: s){
+        std::cout << c << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    }
+    std::cout << std::endl;
+
 }

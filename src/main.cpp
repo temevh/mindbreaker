@@ -9,8 +9,9 @@ int main() {
     char* options[2] = {"yes", "no"};
 
     std::string ready = selectionMenu(prompt, options, 2);
-    if (ready == "y") {
+    if (ready == "yes") {
         std::cout << "\nGood" << std::endl;
+        writeText(prompt);
         //Go to chapter one
     } else {
         std::cout << "\nMaybe next time!" << std::endl;
