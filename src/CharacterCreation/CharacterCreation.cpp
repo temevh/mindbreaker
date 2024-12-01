@@ -21,7 +21,7 @@ std::string selectName () {
 
 Character createCharacter()
 {
-    Character character("", "", 100, 10);
+    Character character("", "", 100, 3);
     std::string charName;
     std::string charClass;
     /*

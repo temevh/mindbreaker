@@ -90,19 +90,25 @@ void pressEnter(){
 void writeText(std::string text, int sanity){
     clearScreen();
     std::string s = text;
+
+    int textSpeed;
+
+
     if(sanity == 10){
+        textSpeed = 30;
         for(const auto c: s){
             std::cout << c << std::flush;
-            std::this_thread::sleep_for(std::chrono::milliseconds(30));
+            std::this_thread::sleep_for(std::chrono::milliseconds(textSpeed));
         }
     }else if (sanity < 10){
+        textSpeed = (10 - sanity) * 10; 
         for(const auto c: s){
             if(generateRandomNumber(sanity) > 0){
                 std::cout << c << std::flush;
-                std::this_thread::sleep_for(std::chrono::milliseconds(30));
+                std::this_thread::sleep_for(std::chrono::milliseconds(textSpeed));
             }else{
                 std::cout << " " << std::flush;
-                std::this_thread::sleep_for(std::chrono::milliseconds(30));
+                std::this_thread::sleep_for(std::chrono::milliseconds(textSpeed));
             }
         }
     }
