@@ -5,7 +5,7 @@
 #include <sstream>
 
 #include "../utils/UtilFunctions.h"
-#include "../Character/Character.h"
+#include "../Player/Player.h"
 
 std::string checkPocket() {
     std::string prompt = "Check your pocket?";
@@ -29,7 +29,7 @@ void twoDoors(){
     //Save users choices and use to add randomness?
 }
 
-int numbersMinigame(Character& player){
+int numbersMinigame(Player& player){
     clearScreen();
     int numbers[5]; //Change based on difficulty?
     int playerNumbers[5];
@@ -68,7 +68,7 @@ int numbersMinigame(Character& player){
     if (correct){
         return 1;
     } else {
-        player.setCharSanity(player.getCharSanity() - 1);
+        player.setSanity(player.getSanity() - 1);
         return 0;
     }
 

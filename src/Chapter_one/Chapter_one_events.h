@@ -3,10 +3,10 @@
 
 #include <string>
 
-#include "../Character/Character.h"
+#include "../Player/Player.h"
 
 std::string checkPocket();
 void twoDoors();
-int numbersMinigame(Character& player);
+int numbersMinigame(Player& player);
 
 #endif

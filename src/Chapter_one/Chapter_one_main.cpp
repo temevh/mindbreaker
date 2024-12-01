@@ -7,38 +7,36 @@
 #include "../utils/UtilFunctions.h"
 #include "Chapter_one_events.h"
 
-#include "../Character/Character.h"
+#include "../Player/Player.h"
 
 using json = nlohmann::json;
 
-void chapterOneMain(Character& player) {
+void chapterOneMain(Player& player) {
     std::string fileName = "chapter_one_text.json";
 
     nlohmann::json dialogueData = loadJsonFromFile(fileName);
     
-    /*
+    
     writeText(dialogueData["intro"], 10);
-    for (int i = 1; i<3; i++){
+    for (int i = 1; i<4; i++){
         std::string line = "backstory_" + std::to_string(i);
-        writeText(dialogueData[line], player.getCharSanity());
+        writeText(dialogueData[line], player.getSanity());
     }
 
     checkPocket();
-    writeText(dialogueData["getUp"], player.getCharSanity());
-    writeText(dialogueData["twoDoors"], player.getCharSanity());
+    writeText(dialogueData["getUp"], player.getSanity());
+    writeText(dialogueData["twoDoors"], player.getSanity());
     twoDoors();
-    writeText(dialogueData["doorTouched"], player.getCharSanity());
+    writeText(dialogueData["doorTouched"], player.getSanity());
     
     
-    */
-    
-    //int result = numbersMinigame(player);
-    int result = 0;
+    int result = numbersMinigame(player);
+    //int result = 0;
     if (result == 1){
-        writeText(dialogueData["numbersCorrect"], player.getCharSanity());
+        writeText(dialogueData["numbersCorrect"], player.getSanity());
     }else if (result == 0){
-        writeText(dialogueData["numbersIncorrect"], player.getCharSanity());
+        writeText(dialogueData["numbersIncorrect"], player.getSanity());
     }
-    writeText(dialogueData["doorOpened"], player.getCharSanity());
+    writeText(dialogueData["doorOpened"], player.getSanity());
     
 }
