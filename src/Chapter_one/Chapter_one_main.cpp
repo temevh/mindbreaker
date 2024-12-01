@@ -16,6 +16,7 @@ void chapterOneMain(Character& player) {
 
     nlohmann::json dialogueData = loadJsonFromFile(fileName);
     
+    /*
     writeText(dialogueData["intro"], 10);
     for (int i = 1; i<3; i++){
         std::string line = "backstory_" + std::to_string(i);
@@ -26,15 +27,18 @@ void chapterOneMain(Character& player) {
     writeText(dialogueData["getUp"], player.getCharSanity());
     writeText(dialogueData["twoDoors"], player.getCharSanity());
     twoDoors();
-    writeText(dialogueData["doorOpened"], player.getCharSanity());
+    writeText(dialogueData["doorTouched"], player.getCharSanity());
     
-    /*
-    int result = numbersMinigame(player);
+    
+    */
+    
+    //int result = numbersMinigame(player);
+    int result = 0;
     if (result == 1){
-        writeText(dialogueData["numbersCorrect"], 10);
+        writeText(dialogueData["numbersCorrect"], player.getCharSanity());
     }else if (result == 0){
-        std:: cout << player.getCharSanity() << std::endl;
         writeText(dialogueData["numbersIncorrect"], player.getCharSanity());
     }
-    */
+    writeText(dialogueData["doorOpened"], player.getCharSanity());
+    
 }
