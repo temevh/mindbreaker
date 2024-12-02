@@ -75,3 +75,8 @@ int numbersMinigame(Player& player){
     return 1;
 }
 
+void firstEncounter(Player& player){
+    std::cout << "Encounter" << std::endl;
+
+
+}

@@ -8,5 +8,6 @@
 std::string checkPocket();
 void twoDoors();
 int numbersMinigame(Player& player);
+void firstEncounter(Player& player);
 
 #endif
