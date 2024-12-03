@@ -145,8 +145,8 @@ int generateRandomNumber(int maxNumber){
 }
 
 std::string generateRandomName(){
-    const char* firstNames[5] = {"Xavier", "Hunter", "Leo", "Sam", "Winston"};
-    const char* lastNames[5] = {"Smith", "Lee", "Oswald", "Dong", "Argal"};
+    const char* firstNames[7] = {"Xavier", "Hunter", "Leo", "Sam", "Winston", "Juppe15", "Lellu"};
+    //const char* lastNames[5] = {"Smith", "Lee", "Oswald", "Dong", "Argal"};
     //std::string* names = new std::string[2];
     std::string name = firstNames[generateRandomNumber(5)];
     //names[1] = lastNames[generateRandomNumber(5)];

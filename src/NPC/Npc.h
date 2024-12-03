@@ -4,6 +4,7 @@
 #include "../Character/Character.h"
 
 void npcInteraction(Character& npc);
+void talk(Character& npc);
 
 
 #endif
