@@ -53,6 +53,7 @@ Player createPlayer() {
 
 Character createNPC() {
     std::string name = generateRandomName();
+    int hp = generateRandomNumber(100);
 
-    return Character(name, "Tech priest", 100);
+    return Character(name, "Tech priest", hp);
 }

@@ -80,8 +80,9 @@ int numbersMinigame(Player& player){
 void firstEncounter(Player& player){
     std::cout << "Encounter" << std::endl;
 
-    Character npc = createNPC();
+    Character npc_1 = createNPC();
+    Character npc_2 = createNPC();
 
-    std::cout << "You encounter " << npc.getCharName() << " with " << npc.getCharHealth() << " health." << std::endl;
-
+    std::cout << "You encounter " << npc_1.getCharName() << " with " << npc_1.getCharHealth() << " health." << std::endl;
+    std::cout << "You encounter " << npc_2.getCharName() << " with " << npc_2.getCharHealth() << " health." << std::endl;
 }
