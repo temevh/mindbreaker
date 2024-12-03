@@ -6,6 +6,8 @@
 
 #include "../utils/UtilFunctions.h"
 #include "../Player/Player.h"
+#include "../CharacterCreation/CharacterCreation.h"
+
 
 std::string checkPocket() {
     std::string prompt = "Check your pocket?";
@@ -78,5 +80,8 @@ int numbersMinigame(Player& player){
 void firstEncounter(Player& player){
     std::cout << "Encounter" << std::endl;
 
+    Character npc = createNPC();
+
+    std::cout << "You encounter " << npc.getCharName() << " with " << npc.getCharHealth() << " health." << std::endl;
 
 }

@@ -50,3 +50,7 @@ Player createPlayer() {
 
     return player;
 }
+
+Character createNPC() {
+    return Character("Nameless", "Tech priest", 100);
+}
