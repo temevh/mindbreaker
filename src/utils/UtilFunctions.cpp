@@ -8,6 +8,8 @@
 #include <fstream>
 #include <cstdlib>
 #include <string.h>
+#include <iomanip>
+#include <vector>
 
 #include "UtilFunctions.h"
 
@@ -114,7 +116,7 @@ void writeText(std::string text, int sanity){
         }
     }
     std::cout << std::endl;
-    pressEnter();
+    //pressEnter();
 }
 
 nlohmann::json loadJsonFromFile(const std::string& fileName){
@@ -151,4 +153,21 @@ std::string generateRandomName(){
     std::string name = firstNames[generateRandomNumber(5)];
     //names[1] = lastNames[generateRandomNumber(5)];
     return name;
+}
+
+void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues){
+    //Add each new dialogue to a vector of structs, vector element has dialogue and player boolean stored
+    clearScreen();
+    for(auto pair : dialogues){
+        if(pair.second == "player"){
+            std::cout << pair.first << std::endl;
+        }else if(pair.second == "npc"){
+            std::cout << std::left << std::setw(60) << "" << pair.first;
+        }
+
+    }
+
+
+
+    pressEnter();
 }

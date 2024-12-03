@@ -3,8 +3,8 @@
 
 #include "../Character/Character.h"
 
-void npcInteraction(Character& npc);
-void talk(Character& npc);
+void npcInteraction(Character& npc, Character& player);
+void talk(Character& npc, Character& player);
 
 
 #endif

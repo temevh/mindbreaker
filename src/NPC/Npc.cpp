@@ -1,11 +1,12 @@
 #include <iostream>
+#include <vector>
 
 
 #include "Npc.h"
 #include "../Character/Character.h"
 #include "../utils/UtilFunctions.h"
 
-void npcInteraction(Character& npc){
+void npcInteraction(Character& npc, Character& player){
     std::string npcName = npc.getCharName();
     std::string talkOption = "Talk";
     std::string analyzeOption = "Analyze";
@@ -17,12 +18,19 @@ void npcInteraction(Character& npc){
     std::cout << "You chose to " << selectedOption << "." << std::endl;
 
     if (selectedOption == "Talk") {
-        talk(npc);
+        talk(npc, player);
     }
 }   
 
-void talk(Character& npc){
+void talk(Character& npc, Character& player){
+    std::string talkPrompt = "What should you say?";
     std::cout<< "You talk with ???" << npc.getCharName() << std::endl;
+    char* talkOptions[2] = {"Who are you?", "Do you know where we are?"};
+    std::string playerDialogue = selectionMenu(talkPrompt, talkOptions, 2);
 
+    std::vector<std::pair<std::string, std::string>> dialogues = {{"I am player", "player"}, {"I am an NPC", "npc"}};
+
+    //dialogueText function
+    dialogueText(dialogues);
 
 }

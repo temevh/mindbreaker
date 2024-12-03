@@ -12,5 +12,6 @@ nlohmann::json loadJsonFromFile(const std::string& fileName);
 int generateRandomNumber(int maxNumber);
 void initializeRandomSeed();
 std::string generateRandomName();
+void dialogueText(std::vector<std::pair<std::string, std::string>>);
 
 #endif
