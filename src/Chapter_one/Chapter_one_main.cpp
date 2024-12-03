@@ -39,6 +39,6 @@ void chapterOneMain(Player& player) {
     }
     writeText(dialogueData["doorOpened"], player.getSanity());
     */
-    firstEncounter(player);
+    firstEncounter(player, dialogueData);
     
 }

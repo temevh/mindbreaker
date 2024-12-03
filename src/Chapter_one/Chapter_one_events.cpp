@@ -4,11 +4,14 @@
 #include <unistd.h>
 #include <sstream>
 #include <vector>
+#include "nlohmann/json.hpp"
 
 #include "../utils/UtilFunctions.h"
 #include "../Player/Player.h"
 #include "../CharacterCreation/CharacterCreation.h"
+#include "../NPC/Npc.h"
 
+using json = nlohmann::json;
 
 std::string checkPocket() {
     std::string prompt = "Check your pocket?";
@@ -78,7 +81,7 @@ int numbersMinigame(Player& player){
     return 1;
 }
 
-void firstEncounter(Player& player){
+void firstEncounter(Player& player, nlohmann::json dialogueData){
     int npcAmount = generateRandomNumber(5);
     std::vector<Character> npcs;
     for (int i = 0; i < npcAmount; ++i){
@@ -86,12 +89,33 @@ void firstEncounter(Player& player){
     }
 
     if (npcAmount > 0){
-        std::cout<<"In the room with you there seems to be " << npcAmount << " other people." << std::endl;
-    }else if(npcAmount == 0){
-        std::cout<< "The room seems to be mostly empty, with you being the only person there." << std::endl; 
+        std::cout << "In the room with you there seems to be " << npcAmount << " other people." << std::endl;
+        pressEnter();
+        writeText(dialogueData["firstEncounterPrompt"], player.getSanity());
+        char* options[2] = {"yes", "no"};
+        std::string interact = selectionMenu("Interact with others?", options, 2);
+        if(interact == "yes"){
+            std::vector<std::string> npcOptions;
+            for(int i = 0; i < npcAmount; i++){
+                npcOptions.push_back("Person " + std::to_string(i + 1));
+            }
+
+            std::vector<const char*> cstrOptions;
+            for (const auto& option : npcOptions) {
+                cstrOptions.push_back(option.c_str());
+            }
+
+            std::string selectedPerson = selectionMenu("Which person do you want to interact with?", const_cast<char**>(cstrOptions.data()), npcAmount);
+            std::cout << "You chose to interact with " << selectedPerson << "." << std::endl;
+
+            int selectedIndex = std::stoi(selectedPerson.substr(7)) - 1;
+            if (selectedIndex >= 0 && selectedIndex < npcAmount) {
+                npcInteraction(npcs[selectedIndex]);
+            } else {
+                std::cout << "Invalid selection." << std::endl;
+            }
+        }
+    } else {
+        std::cout << "The room seems to be mostly empty, with you being the only person there." << std::endl; 
     }
-    pressEnter();
-    
-
-
 }

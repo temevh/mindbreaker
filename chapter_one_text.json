@@ -8,5 +8,6 @@
   "doorTouched": "As soon as you touch the doorknob you feel a horrible sting and your vision goes black",
   "numbersCorrect" : "You regain your vision and feel oddly light. Your headache also seems to have eased.",
   "numbersIncorrect" : "You regain your vision but everything feels a bit foggy. Your headache is still crushing your brain from all sides.",
-  "doorOpened" : "The door looked heavier than it actually was, causing you to push it a bit too hard and you end up stumbling through it.\n\nThe door closes behind you, making a clicking sound, presumably from the lock doing its job and getting locked.\n\nLike the room on the other side of the now locked door, this one does not look familiar either..."
+  "doorOpened" : "The door looked heavier than it actually was, causing you to push it a bit too hard and you end up stumbling through it.\n\nThe door closes behind you, making a clicking sound, presumably from the lock doing its job and getting locked.\n\nLike the room on the other side of the now locked door, this one does not look familiar either...",
+  "firstEncounterPrompt": "Maybe you should go and talk to them, they could have some useful information. That is assuming they speak the same language..."
   }
