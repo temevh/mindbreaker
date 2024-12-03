@@ -3,6 +3,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <sstream>
+#include <vector>
 
 #include "../utils/UtilFunctions.h"
 #include "../Player/Player.h"
@@ -78,11 +79,19 @@ int numbersMinigame(Player& player){
 }
 
 void firstEncounter(Player& player){
-    std::cout << "Encounter" << std::endl;
+    int npcAmount = generateRandomNumber(5);
+    std::vector<Character> npcs;
+    for (int i = 0; i < npcAmount; ++i){
+        npcs.push_back(createNPC());
+    }
 
-    Character npc_1 = createNPC();
-    Character npc_2 = createNPC();
+    if (npcAmount > 0){
+        std::cout<<"In the room with you there seems to be " << npcAmount << " other people." << std::endl;
+    }else if(npcAmount == 0){
+        std::cout<< "The room seems to be mostly empty, with you being the only person there." << std::endl; 
+    }
+    pressEnter();
+    
 
-    std::cout << "You encounter " << npc_1.getCharName() << " with " << npc_1.getCharHealth() << " health." << std::endl;
-    std::cout << "You encounter " << npc_2.getCharName() << " with " << npc_2.getCharHealth() << " health." << std::endl;
+
 }
