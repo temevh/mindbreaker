@@ -7,6 +7,7 @@
 #include<array> 
 #include <fstream>
 #include <cstdlib>
+#include <string.h>
 
 #include "UtilFunctions.h"
 
@@ -141,4 +142,13 @@ void initializeRandomSeed() {
 int generateRandomNumber(int maxNumber){
     int num = rand() % maxNumber;
     return num;
+}
+
+std::string generateRandomName(){
+    const char* firstNames[5] = {"Xavier", "Hunter", "Leo", "Sam", "Winston"};
+    const char* lastNames[5] = {"Smith", "Lee", "Oswald", "Dong", "Argal"};
+    //std::string* names = new std::string[2];
+    std::string name = firstNames[generateRandomNumber(5)];
+    //names[1] = lastNames[generateRandomNumber(5)];
+    return name;
 }

@@ -11,5 +11,6 @@ void writeText(std::string text, int sanity);
 nlohmann::json loadJsonFromFile(const std::string& fileName);
 int generateRandomNumber(int maxNumber);
 void initializeRandomSeed();
+std::string generateRandomName();
 
 #endif
