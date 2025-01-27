@@ -2,6 +2,9 @@
 #include "../Character/Character.h"
 #include "../utils/UtilFunctions.h"
 
+#include "../DialogueManager/DialogueManager.h"
+#include "../DialogueNode/DialogueNode.h"
+
 #include <iostream>
 #include <vector>
 
@@ -28,8 +31,33 @@ int interactWithNpc (Character& npc, Character& player){
 }   
 
 void talkWithNpc(Character& npc, Character& player){
+
     std::cout << "NPC:" << npc.getCharName() << std::endl;
     std::cout << "player:" << player.getCharName() << std::endl;
+    
+     DialogueManager manager;
+
+    // Load dialogue nodes
+    manager.loadDialogue("intro", DialogueNode(
+        "Hello, traveler! What brings you here?",
+        {{"I'm looking for adventure.", "adventure"},
+         {"I need directions.", "directions"}}
+    ));
+
+    manager.loadDialogue("adventure", DialogueNode(
+        "Adventure, you say? Be careful out there!",
+        {{"Thanks for the warning!", "end"}}
+    ));
+
+    manager.loadDialogue("directions", DialogueNode(
+        "The town is to the east. Follow the path.",
+        {{"Thank you!", "end"}}
+    ));
+
+    // Start the dialogue
+    manager.startDialogue("intro");
+
+
 }
 
 void talk(Character& npc, Character& player) {
