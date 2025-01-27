@@ -21,8 +21,16 @@ int interactWithNpc (Character& npc, Character& player){
     //std::cout << "You interact with " << npc.getCharName() << std::endl;
     std::string selectedOption = selectionMenu("What do you want to do?", const_cast<char**>(options), 2);
     std::cout << "You chose to " << selectedOption << "." << std::endl;
+    if (selectedOption == "Talk"){
+        talkWithNpc(npc, player);
+    }
     return 0;
 }   
+
+void talkWithNpc(Character& npc, Character& player){
+    std::cout << "NPC:" << npc.getCharName() << std::endl;
+    std::cout << "player:" << player.getCharName() << std::endl;
+}
 
 void talk(Character& npc, Character& player) {
     std::string talkPrompt = "What should you say?";

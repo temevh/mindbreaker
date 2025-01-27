@@ -8,5 +8,6 @@
 
 void talkPlayerNpc(Character& npc, Character& player);
 int interactWithNpc (Character& npc, Character& player);
+void talkWithNpc(Character& npc, Character& player);
 
 #endif
