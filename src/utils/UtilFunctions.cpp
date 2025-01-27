@@ -50,7 +50,7 @@ std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
     bool selecting = true;
 
     while (selecting) {
-        clearScreen();
+        //clearScreen();
         std::cout << prompt << std::endl;
         for (int i = 0; i < numChoices; ++i) {
             if (i == selected) {
@@ -91,7 +91,7 @@ void pressEnter(){
 }
 
 void writeText(std::string text, int sanity){
-    clearScreen();
+    //clearScreen();
     std::string s = text;
 
     int textSpeed;
@@ -160,14 +160,13 @@ void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues){
     clearScreen();
     for(auto pair : dialogues){
         if(pair.second == "player"){
-            std::cout << pair.first << std::endl;
+            //std::cout << pair.first << std::endl;
+            writeText(pair.first, 10);
         }else if(pair.second == "npc"){
-            std::cout << std::left << std::setw(60) << "" << pair.first;
+            std::cout << std::setw(60) << " " << std::flush;
+            writeText(pair.first, 10);
         }
 
     }
 
-
-
-    pressEnter();
 }
