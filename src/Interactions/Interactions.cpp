@@ -35,9 +35,8 @@ void talkWithNpc(Character& npc, Character& player){
     std::cout << "NPC:" << npc.getCharName() << std::endl;
     std::cout << "player:" << player.getCharName() << std::endl;
     
-     DialogueManager manager;
+    DialogueManager manager;
 
-    // Load dialogue nodes
     manager.loadDialogue("intro", DialogueNode(
         "Hello, traveler! What brings you here?",
         {{"I'm looking for adventure.", "adventure"},
@@ -54,7 +53,6 @@ void talkWithNpc(Character& npc, Character& player){
         {{"Thank you!", "end"}}
     ));
 
-    // Start the dialogue
     manager.startDialogue("intro");
 
 
