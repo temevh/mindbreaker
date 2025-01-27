@@ -81,7 +81,7 @@ std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
     }
 
     //std::cout << "Selected: " << options[selected] << std::endl;
-    return options[selected];
+    return std::string(options[selected]); // Ensure correct return type
 }
 
 void pressEnter(){
@@ -155,18 +155,14 @@ std::string generateRandomName(){
     return name;
 }
 
-void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues){
-    //Add each new dialogue to a vector of structs, vector element has dialogue and player boolean stored
+void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues) {
     clearScreen();
-    for(auto pair : dialogues){
-        if(pair.second == "player"){
-            //std::cout << pair.first << std::endl;
+    for (const auto& pair : dialogues) {
+        if (pair.second == "player") {
             writeText(pair.first, 10);
-        }else if(pair.second == "npc"){
+        } else if (pair.second == "npc") {
             std::cout << std::setw(60) << " " << std::flush;
             writeText(pair.first, 10);
         }
-
     }
-
 }

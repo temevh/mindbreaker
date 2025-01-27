@@ -9,7 +9,7 @@
 #include "../utils/UtilFunctions.h"
 #include "../Player/Player.h"
 #include "../CharacterCreation/CharacterCreation.h"
-#include "../NPC/Npc.h"
+#include "../Interactions/Interactions.h"
 
 using json = nlohmann::json;
 
@@ -110,7 +110,7 @@ void firstEncounter(Player& player, nlohmann::json dialogueData){
 
             int selectedIndex = std::stoi(selectedPerson.substr(7)) - 1;
             if (selectedIndex >= 0 && selectedIndex < npcAmount) {
-                npcInteraction(npcs[selectedIndex], player);
+                int result = interactWithNpc(npcs[selectedIndex], player);
             } else {
                 std::cout << "Invalid selection." << std::endl;
             }

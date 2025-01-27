@@ -3,6 +3,7 @@
 
 #include <string>
 #include <nlohmann/json.hpp>
+#include <vector> // Add this line
 
 std::string selectionMenu(std::string prompt, char* options[], int numChoices);
 void clearScreen();
@@ -12,6 +13,6 @@ nlohmann::json loadJsonFromFile(const std::string& fileName);
 int generateRandomNumber(int maxNumber);
 void initializeRandomSeed();
 std::string generateRandomName();
-void dialogueText(std::vector<std::pair<std::string, std::string>>);
+void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues);
 
 #endif
