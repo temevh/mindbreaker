@@ -50,7 +50,7 @@ std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
     bool selecting = true;
 
     while (selecting) {
-        //clearScreen();
+        clearScreen();
         std::cout << prompt << std::endl;
         for (int i = 0; i < numChoices; ++i) {
             if (i == selected) {

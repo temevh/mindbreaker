@@ -11,6 +11,7 @@ void npcInteraction(Character& npc, Character& player){
     std::string talkOption = "Talk";
     std::string analyzeOption = "Analyze";
 
+    /* 
     const char* options[] = {talkOption.c_str(), analyzeOption.c_str()};
 
     //std::cout << "You interact with " << npc.getCharName() << std::endl;
@@ -20,6 +21,8 @@ void npcInteraction(Character& npc, Character& player){
     if (selectedOption == "Talk") {
         talk(npc, player);
     }
+    */
+   talkTuah(npc, player);
 }   
 
 void talk(Character& npc, Character& player){
@@ -34,6 +37,7 @@ void talk(Character& npc, Character& player){
     if(playerDialogue == "Who are you?"){
         std::string answer = "My name is " + npcName +". What about you?";
         dialogues.push_back({answer, "npc"});
+        dialogueText(dialogues);
     }
 
     char* anwerToQuestion[2] = {"My name is...", "I would rather not answer"};
@@ -43,3 +47,7 @@ void talk(Character& npc, Character& player){
 
 }
 
+void talkTuah(Character& npc, Character& player){
+    std::cout << "player: " << player.getCharName() << std::endl;
+    std::cout << "NPC: " << npc.getCharName() << std::endl;
+}

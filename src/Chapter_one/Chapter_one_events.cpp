@@ -89,9 +89,9 @@ void firstEncounter(Player& player, nlohmann::json dialogueData){
     }
 
     if (npcAmount > 0){
-        /*std::cout << "In the room with you there seems to be " << npcAmount << " other people." << std::endl;
+        std::cout << "In the room with you there seems to be " << npcAmount << " other people." << std::endl;
         pressEnter();
-        writeText(dialogueData["firstEncounterPrompt"], player.getSanity());*/
+        writeText(dialogueData["firstEncounterPrompt"], player.getSanity());
         char* options[2] = {"yes", "no"};
         std::string interact = selectionMenu("Interact with others?", options, 2);
         if(interact == "yes"){

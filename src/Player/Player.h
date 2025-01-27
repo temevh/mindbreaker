@@ -7,6 +7,7 @@ class Player : public Character {
     private:
         int sanity;
         char* hasMet;
+        char* choices;
 
     public:
         Player(const std::string& charName, const std::string& charClass, int charHealth, int sanity);
