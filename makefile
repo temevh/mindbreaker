@@ -34,7 +34,7 @@ clean:
 
 # Run the program (ensure correct working directory for JSON file access)
 run: $(TARGET)
-	cd $(SRC_DIR) && ./$(TARGET)
+	./$(TARGET)
 
 # Phony targets
 .PHONY: all clean run

@@ -8,19 +8,20 @@
 int main() {
     initializeRandomSeed();
     Player player = createPlayer();
-    /*
-    std::string prompt = "Are you ready to begin your adventure?";
+    
+    std::string prompt = "Are you ready?";
     char* options[2] = {"yes", "no"};
 
     std::string ready = selectionMenu(prompt, options, 2);
     if (ready == "yes") {
         clearScreen();
         //Go to chapter one
+        chapterOneMain(player);
     } else {
         std::cout << "\nMaybe next time!" << std::endl;
+        return 0;
     }
-    */
     
-    chapterOneMain(player);
+    
     return 0;
 }
