@@ -81,6 +81,7 @@ std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
     }
 
     //std::cout << "Selected: " << options[selected] << std::endl;
+    clearScreen();
     return std::string(options[selected]); // Ensure correct return type
 }
 
@@ -116,7 +117,7 @@ void writeText(std::string text, int sanity){
         }
     }
     std::cout << std::endl;
-    //pressEnter();
+    pressEnter();
 }
 
 nlohmann::json loadJsonFromFile(const std::string& fileName){

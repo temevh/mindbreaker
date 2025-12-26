@@ -6,11 +6,12 @@
 
 #include "../Player/Player.h"
 #include "../Interactions/Interactions.h"
+#include "../GameState/GameState.h"
 
 using json = nlohmann::json;
 
 std::string checkPocket();
-void twoDoors();
+void twoDoors(GameState& gameState);
 int numbersMinigame(Player& player);
 void firstEncounter(Player& player, nlohmann::json dialogueData);
 

@@ -1,8 +1,8 @@
 #ifndef CHATPER_ONE_MAIN_H
 #define CHATPER_ONE_MAIN_H
 
-#include "../Player/Player.h"
+#include "../GameState/GameState.h"
 
-void chapterOneMain(Player& player);
+void chapterOneMain(GameState& gameState);
 
 #endif

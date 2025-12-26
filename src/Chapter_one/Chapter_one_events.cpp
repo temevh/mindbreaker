@@ -10,6 +10,7 @@
 #include "../Player/Player.h"
 #include "../CharacterCreation/CharacterCreation.h"
 #include "../Interactions/Interactions.h"
+#include "../GameState/GameState.h"
 
 using json = nlohmann::json;
 
@@ -26,13 +27,21 @@ std::string checkPocket() {
     return checked;
 }
 
-void twoDoors(){
+void twoDoors(GameState& gameState){
     std::string prompt = "Which door do you open?";
     char* options[2] = {"left door", "right door"};
 
     std::string checked = selectionMenu(prompt, options, 2);
-    //Return which door was opened and use later?
-    //Save users choices and use to add randomness?
+    
+    // Record the choice in history
+    gameState.recordChoice("twoDoors: " + checked);
+    
+    // Set story flags for easy conditional checks later
+    if (checked == "left door") {
+        gameState.setStoryFlag("chose_left_door", true);
+    } else if (checked == "right door") {
+        gameState.setStoryFlag("chose_right_door", true);
+    }
 }
 
 int numbersMinigame(Player& player){
