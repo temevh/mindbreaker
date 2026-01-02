@@ -20,9 +20,9 @@ std::string checkPocket() {
 
     std::string checked = selectionMenu(prompt, options, 2);
     if(checked == "no"){
-        writeText("Whatever, its most likely empty anyways.", 10);
+        writeText("Whatever, its most likely empty anyways.");
     }else if(checked == "yes"){
-        writeText("It's empty. Guess I was just imagining stuff.", 10);
+        writeText("It's empty. Guess I was just imagining stuff.");
     }
     return checked;
 }
@@ -34,7 +34,7 @@ void twoDoors(GameState& gameState){
     std::string checked = selectionMenu(prompt, options, 2);
     
     // Record the choice in history
-    gameState.recordChoice("twoDoors: " + checked);
+    gameState.recordChoice("Two doors", checked);
     
     // Set story flags for easy conditional checks later
     if (checked == "left door") {
@@ -46,7 +46,7 @@ void twoDoors(GameState& gameState){
 
 int numbersMinigame(Player& player){
     clearScreen();
-    int numbers[5]; //Change based on difficulty?
+    int numbers[2]; //Change based on difficulty?
     int playerNumbers[5];
     for (int i = 0; i < 5; ++i){
         numbers[i] = generateRandomNumber(10);
@@ -67,7 +67,8 @@ int numbersMinigame(Player& player){
     std::string input;
     std::getline(std::cin, input);
     std::stringstream ss(input);
-
+    std::cout << "input: " << input <<std::endl;
+    std::cout << "numbers: " << *numbers << std::endl;
     for (int i = 0; i < 5; ++i) {
         ss >> playerNumbers[i];
     }
@@ -100,7 +101,7 @@ void firstEncounter(Player& player, nlohmann::json dialogueData){
     if (npcAmount > 0){
         std::cout << "In the room with you there seems to be " << npcAmount << " other people." << std::endl;
         pressEnter();
-        writeText(dialogueData["firstEncounterPrompt"], player.getSanity());
+        writeText(dialogueData["firstEncounterPrompt"]);
         char* options[2] = {"yes", "no"};
         std::string interact = selectionMenu("Interact with others?", options, 2);
         if(interact == "yes"){

@@ -8,6 +8,9 @@
 #include "../Player/Player.h"
 #include "nlohmann/json.hpp"
 
+class GameState; 
+extern GameState* gameState;
+
 class GameState
 {
 private:
@@ -15,7 +18,8 @@ private:
     int currentChapter;
     std::vector<int> completedChapters;
     std::map<std::string, bool> storyFlags;
-    std::vector<std::string> choicesHistory;
+    using Choice = std::pair<std::string, std::string>;
+    std::vector<Choice> choicesHistory;
     std::map<std::string, int> npcRelationships;
     std::map<std::string, int> gameVariables;
     std::vector<std::string> inventory;
@@ -41,8 +45,8 @@ public:
     bool hasStoryFlag(const std::string &flagName) const;
 
     // Choices tracking
-    void recordChoice(const std::string &choice);
-    const std::vector<std::string> &getChoicesHistory() const;
+    void recordChoice(const std::string &choiceName, const std::string &selection);
+    const std::vector<GameState::Choice> &getChoicesHistory() const;
     std::string getLastChoice() const;
 
     // NPC relationships
@@ -54,6 +58,8 @@ public:
     void setGameVariable(const std::string &varName, int value);
     int getGameVariable(const std::string &varName) const;
     void modifyGameVariable(const std::string &varName, int delta);
+    void setDifficulty(int difficulty);
+    int getDifficulty() const;
 
     // Inventory management
     void addItem(const std::string &item);

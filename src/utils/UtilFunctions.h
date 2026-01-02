@@ -8,7 +8,7 @@
 std::string selectionMenu(std::string prompt, char* options[], int numChoices);
 void clearScreen();
 void pressEnter();
-void writeText(std::string text, int sanity);
+void writeText(std::string text);
 nlohmann::json loadJsonFromFile(const std::string& fileName);
 int generateRandomNumber(int maxNumber);
 void initializeRandomSeed();

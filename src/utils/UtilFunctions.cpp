@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "UtilFunctions.h"
+#include "../GameState/GameState.h"
 
 #define KEY_UP 65    
 #define KEY_DOWN 66  
@@ -91,8 +92,8 @@ void pressEnter(){
     clearScreen();
 }
 
-void writeText(std::string text, int sanity){
-    //clearScreen();
+void writeText(std::string text){
+    int sanity = gameState->getPlayer().getSanity();
     std::string s = text;
 
     int textSpeed;
@@ -160,10 +161,10 @@ void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues) {
     clearScreen();
     for (const auto& pair : dialogues) {
         if (pair.second == "player") {
-            writeText(pair.first, 10);
+            writeText(pair.first);
         } else if (pair.second == "npc") {
             std::cout << std::setw(60) << " " << std::flush;
-            writeText(pair.first, 10);
+            writeText(pair.first);
         }
     }
 }

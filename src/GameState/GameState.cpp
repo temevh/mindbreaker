@@ -58,17 +58,17 @@ bool GameState::hasStoryFlag(const std::string& flagName) const {
 }
 
 // Choices tracking
-void GameState::recordChoice(const std::string& choice) {
-    choicesHistory.push_back(choice);
+void GameState::recordChoice(const std::string& choiceName,  const std::string& selection) {
+    choicesHistory.push_back({choiceName, selection});
 }
 
-const std::vector<std::string>& GameState::getChoicesHistory() const {
+const std::vector<GameState::Choice>& GameState::getChoicesHistory() const {
     return choicesHistory;
 }
 
 std::string GameState::getLastChoice() const {
     if (!choicesHistory.empty()) {
-        return choicesHistory.back();
+        return choicesHistory.back().second;
     }
     return "";
 }
@@ -106,6 +106,15 @@ int GameState::getGameVariable(const std::string& varName) const {
 void GameState::modifyGameVariable(const std::string& varName, int delta) {
     gameVariables[varName] += delta;
 }
+
+void GameState::setDifficulty(int difficulty) {
+    gameVariables["difficulty"] = difficulty;
+}
+
+int GameState::getDifficulty() const {
+    return getGameVariable("difficulty");
+}
+
 
 // Inventory management
 void GameState::addItem(const std::string& item) {
@@ -149,7 +158,7 @@ void GameState::printGameState() const {
     
     std::cout << "Choices History (" << choicesHistory.size() << "):\n";
     for (size_t i = 0; i < choicesHistory.size(); ++i) {
-        std::cout << "  " << (i+1) << ". " << choicesHistory[i] << "\n";
+        std::cout << "  " << (i+1) << ". " << choicesHistory[i].first << ": " << choicesHistory[i].second << "\n";
     }
     
     std::cout << "Inventory (" << inventory.size() << "):\n";

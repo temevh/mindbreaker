@@ -18,30 +18,31 @@ void chapterOneMain(GameState &gameState)
 
     nlohmann::json dialogueData = loadJsonFromFile(fileName);
 
-    writeText(dialogueData["intro"], player.getSanity());
-    for (int i = 1; i < 4; i++)
-    {
-        std::string line = "backstory_" + std::to_string(i);
-        writeText(dialogueData[line], player.getSanity());
-    }
-
-    checkPocket();
-    writeText(dialogueData["getUp"], player.getSanity());
-    writeText(dialogueData["twoDoors"], player.getSanity());
-    twoDoors(gameState);
-    gameState.printGameState();
-    writeText(dialogueData["doorTouched"], player.getSanity());
+    //writeText(dialogueData["intro"]);
+    //for (int i = 1; i < 4; i++)
+    //{
+    //    std::string line = "backstory_" + std::to_string(i);
+    //    writeText(dialogueData[line]);
+    //}
+//
+    //checkPocket();
+    //writeText(dialogueData["getUp"]);
+    //writeText(dialogueData["twoDoors"]);
+    //twoDoors(gameState);
+    //gameState.printGameState();
+    //writeText(dialogueData["doorTouched"]);
 
     int result = numbersMinigame(player);
     if (result == 1)
     {
-        writeText(dialogueData["numbersCorrect"], player.getSanity());
+        std::cout<<"Correct" << std::endl;
+        writeText(dialogueData["numbersCorrect"]);
     }
     else if (result == 0)
     {
-        writeText(dialogueData["numbersIncorrect"], player.getSanity());
+        writeText(dialogueData["numbersIncorrect"]);
     }
-    writeText(dialogueData["doorOpened"], player.getSanity());
+    writeText(dialogueData["doorOpened"]);
 
     firstEncounter(player, dialogueData);
 }
