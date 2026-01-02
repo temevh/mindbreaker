@@ -44,52 +44,49 @@ void twoDoors(GameState& gameState){
     }
 }
 
-int numbersMinigame(Player& player){
+int numbersMinigame(GameState& gameState) {
     clearScreen();
-    int numbers[2]; //Change based on difficulty?
-    int playerNumbers[5];
-    for (int i = 0; i < 5; ++i){
+
+    int difficulty = gameState.getDifficulty() * 2;
+
+    std::vector<int> numbers(difficulty);
+    std::vector<int> playerNumbers(difficulty);
+
+    for (int i = 0; i < difficulty; ++i) {
         numbers[i] = generateRandomNumber(10);
     }
-    for (auto num : numbers){
-        int spaces = generateRandomNumber(10);
-        for (int i = 1; i < spaces; i++){
-            std::cout << " ";
-        }
-        std::cout << num << std::endl;
+
+    for (int i = 0; i < difficulty; ++i) {
+        std::cout << std::string(generateRandomNumber(10), ' ')
+                  << numbers[i] << '\n';
     }
-    std::cout << std::endl;
-    sleep(3);
+
+    sleep(difficulty);
     clearScreen();
-    std::cout << "THE NUMBERS!! WHAT WERE THEY??\n" << std::endl;
-    std::cout << "The numbers were: " << std::endl;
-    
+
+    std::cout << "THE NUMBERS!! WHAT WERE THEY??\n\n"; 
+    std::cout << "Enter the numbers separated by spaces:\n";
+
     std::string input;
     std::getline(std::cin, input);
     std::stringstream ss(input);
-    std::cout << "input: " << input <<std::endl;
-    std::cout << "numbers: " << *numbers << std::endl;
-    for (int i = 0; i < 5; ++i) {
+
+    for (int i = 0; i < difficulty; ++i) {
         ss >> playerNumbers[i];
     }
-    
-    bool correct = true;
-    for (int i = 0; i < 5; ++i){
-        if (playerNumbers[i] != numbers[i]){
-            correct = false;
-            break;
+
+    for (int i = 0; i < difficulty; ++i) {
+        if (playerNumbers[i] != numbers[i]) {
+            gameState.getPlayer().setSanity(
+                gameState.getPlayer().getSanity() - 1);
+            clearScreen();
+            return 0;
         }
     }
-    
-    if (correct){
-        return 1;
-    } else {
-        player.setSanity(player.getSanity() - 1);
-        return 0;
-    }
-
+    clearScreen();
     return 1;
 }
+
 
 void firstEncounter(Player& player, nlohmann::json dialogueData){
     int npcAmount = generateRandomNumber(5);

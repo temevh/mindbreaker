@@ -32,16 +32,8 @@ void chapterOneMain(GameState &gameState)
     //gameState.printGameState();
     //writeText(dialogueData["doorTouched"]);
 
-    int result = numbersMinigame(player);
-    if (result == 1)
-    {
-        std::cout<<"Correct" << std::endl;
-        writeText(dialogueData["numbersCorrect"]);
-    }
-    else if (result == 0)
-    {
-        writeText(dialogueData["numbersIncorrect"]);
-    }
+    int result = numbersMinigame(gameState);
+    writeText(result ? dialogueData["numbersMinigame"]["correct"] : dialogueData["numbersMinigame"]["incorrect"]);
     writeText(dialogueData["doorOpened"]);
 
     firstEncounter(player, dialogueData);
