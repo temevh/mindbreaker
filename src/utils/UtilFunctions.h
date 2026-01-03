@@ -4,8 +4,12 @@
 #include <string>
 #include <nlohmann/json.hpp>
 #include <vector>
+#include "../GameState/GameState.h"
 
-std::string selectionMenu(std::string prompt, char* options[], int numChoices);
+using nlohmann::json;
+
+
+std::string selectionMenu(const std::string& prompt, const std::vector<std::string>& options);
 void clearScreen();
 void pressEnter();
 void writeText(std::string text);
@@ -14,5 +18,6 @@ int generateRandomNumber(int maxNumber);
 void initializeRandomSeed();
 std::string generateRandomName();
 void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues);
+void runNPCDialogue(GameState& gameState, const std::string& npcName, const json& dialogueData);
 
 #endif

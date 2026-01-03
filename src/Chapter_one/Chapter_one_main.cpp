@@ -17,6 +17,7 @@ void chapterOneMain(GameState &gameState)
     std::string fileName = "chapter_one_text.json";
 
     nlohmann::json dialogueData = loadJsonFromFile(fileName);
+    nlohmann::json npcData = loadJsonFromFile("npc_guard.json");
 
     //writeText(dialogueData["intro"]);
     //for (int i = 1; i < 4; i++)
@@ -32,9 +33,9 @@ void chapterOneMain(GameState &gameState)
     //gameState.printGameState();
     //writeText(dialogueData["doorTouched"]);
 
-    int result = numbersMinigame(gameState);
-    writeText(result ? dialogueData["numbersMinigame"]["correct"] : dialogueData["numbersMinigame"]["incorrect"]);
-    writeText(dialogueData["doorOpened"]);
+    //int result = numbersMinigame(gameState);
+    //writeText(result ? dialogueData["numbersMinigame"]["correct"] : dialogueData["numbersMinigame"]["incorrect"]);
+    //writeText(dialogueData["doorOpened"]);
 
-    firstEncounter(player, dialogueData);
+    firstEncounter(player, gameState, npcData);
 }

@@ -13,19 +13,15 @@ void talkPlayerNpc(Character& npc, Character& player){
     std::cout << "NPC: " << npc.getCharName() << std::endl;
 }
 
-int interactWithNpc (Character& npc, Character& player){
+int interactWithNpc(Character& npc, Character& player, GameState& gameState, const json& dialogueData){
     std::string npcName = npc.getCharName();
-    std::string talkOption = "Talk";
-    std::string analyzeOption = "Analyze";
+    std::vector<std::string> options = {"Talk", "Analyze"};
 
-     
-    const char* options[] = {talkOption.c_str(), analyzeOption.c_str()};
-
-    //std::cout << "You interact with " << npc.getCharName() << std::endl;
-    std::string selectedOption = selectionMenu("What do you want to do?", const_cast<char**>(options), 2);
+    std::string selectedOption = selectionMenu("What do you want to do?", options);
     std::cout << "You chose to " << selectedOption << "." << std::endl;
+    
     if (selectedOption == "Talk"){
-        talkWithNpc(npc, player);
+        runNPCDialogue(gameState, npcName, dialogueData);
     }
     return 0;
 }   
@@ -62,8 +58,8 @@ void talk(Character& npc, Character& player) {
     std::string talkPrompt = "What should you say?";
     std::string npcName = npc.getCharName();
     std::cout << "You talk with " << npcName << std::endl;
-    const char* initialOptions[2] = {"Who are you?", "Do you know where we are?"};
-    std::string playerDialogue = selectionMenu(talkPrompt, const_cast<char**>(initialOptions), 2);
+    std::vector<std::string> initialOptions = {"Who are you?", "Do you know where we are?"};
+    std::string playerDialogue = selectionMenu(talkPrompt, initialOptions);
 
     std::vector<std::pair<std::string, std::string>> dialogues = {{"I am player", "player"}, {"I am an NPC", "npc"}};
     dialogues.push_back({playerDialogue, "player"});
@@ -73,8 +69,8 @@ void talk(Character& npc, Character& player) {
         dialogueText(dialogues);
     }
 
-    const char* answerToQuestion[2] = {"My name is...", "I would rather not answer"};
-    std::string playerAnswer = selectionMenu("", const_cast<char**>(answerToQuestion), 2);
+    std::vector<std::string> answerToQuestion = {"My name is...", "I would rather not answer"};
+    std::string playerAnswer = selectionMenu("", answerToQuestion);
 
     dialogues.push_back({playerAnswer, "player"});
     dialogueText(dialogues);

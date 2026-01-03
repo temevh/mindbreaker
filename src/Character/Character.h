@@ -6,12 +6,13 @@
 class Character{
 protected:
     std::string charName;
+    std::string id;
     std::string charClass;
     int charHealth;
 
     public:
         //Constructor
-        Character(const std::string &charName, const std::string &charClass, int charHealth);
+        Character(const std::string &charName, const std::string &id, const std::string &charClass, int charHealth);
 
         // Getters
         std::string getCharName() const;

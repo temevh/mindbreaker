@@ -1,7 +1,7 @@
 #include "Character.h"
 
-Character::Character(const std::string& charName, const std::string& charClass, int charHealth)
-    : charName(charName), charClass(charClass), charHealth(charHealth) {}
+Character::Character(const std::string& charName, const std::string& id, const std::string& charClass, int charHealth)
+    : charName(charName), id(id), charClass(charClass), charHealth(charHealth) {}
 
 // Getters
 std::string Character::getCharName() const {
