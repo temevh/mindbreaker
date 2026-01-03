@@ -102,13 +102,11 @@ void firstEncounter(Player& player, GameState& gameState, const nlohmann::json& 
         return;
     }
 
-    std::cout << "In the room with you there seems to be "
-              << npcAmount << " other people.\n";
+    std::cout << "In the room with you there seems to be "<< npcAmount << " other people.\n";
     pressEnter();
 
 
     writeText(dialogueData["firstEncounterPrompt"]);
-    std::cout << "test" << std::endl;
     std::vector<std::string> interactOptions = {"Yes", "No"};
     std::string interactChoice = selectionMenu("Interact with others?", interactOptions);
 
@@ -128,10 +126,11 @@ void firstEncounter(Player& player, GameState& gameState, const nlohmann::json& 
     
     if (selectedIndex >= 0 && selectedIndex < npcAmount) {
         // Initialize NPC relationship if not already set
+        std::string npcId = npcs[selectedIndex].getCharId();
         std::string npcName = npcs[selectedIndex].getCharName();
-        if (!gameState.hasStoryFlag("met_" + npcName)) {
-            gameState.setNPCRelationship(npcName, 0);
-            gameState.setStoryFlag("met_" + npcName, true);
+        if (!gameState.hasStoryFlag("met_" + npcId)) {
+            gameState.setNPCRelationship(npcId, 0);
+            gameState.setStoryFlag("met_" + npcName + "_" + npcId, true);
         }
         
         // Interact with the selected NPC

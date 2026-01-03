@@ -145,6 +145,21 @@ int generateRandomNumber(int maxNumber){
     return num;
 }
 
+std::string generateId(){
+    static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+    std::string tmp_s;
+    tmp_s.reserve(8);
+
+    for (int i = 0; i < 8; ++i) {
+        tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
+    }
+    
+    return tmp_s;
+}
+
 std::string generateRandomName(){
     const char* firstNames[7] = {"Xavier", "Hunter", "Leo", "Sam", "Winston", "Juppe15", "Lellu"};
     //const char* lastNames[5] = {"Smith", "Lee", "Oswald", "Dong", "Argal"};

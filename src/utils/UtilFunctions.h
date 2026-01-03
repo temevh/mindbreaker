@@ -20,4 +20,6 @@ std::string generateRandomName();
 void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues);
 void runNPCDialogue(GameState& gameState, const std::string& npcName, const json& dialogueData);
 
+std::string generateId();
+
 #endif

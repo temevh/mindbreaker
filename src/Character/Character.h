@@ -6,7 +6,7 @@
 class Character{
 protected:
     std::string charName;
-    std::string id;
+    std::string charId;
     std::string charClass;
     int charHealth;
 
@@ -18,12 +18,14 @@ protected:
         std::string getCharName() const;
         std::string getCharClass() const;
         int getCharHealth() const;
+        std::string getCharId() const;
 
 
         //Setters
         void setCharName(const std::string& charName);
         void setCharClass(const std::string& charClass);
         void setCharHealth(const int& charHealth);
+        void setCharId(const std::string& charId);
 
 };
 

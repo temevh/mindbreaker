@@ -97,8 +97,8 @@ void GameState::setNPCRelationship(const std::string& npcName, int value) {
     npcRelationships[npcName] = value;
 }
 
-int GameState::getNPCRelationship(const std::string& npc) const {
-    auto it = npcStates.find(npc);
+int GameState::getNPCRelationship(const std::string& npcId) const {
+    auto it = npcStates.find(npcId);
     if (it != npcStates.end()) {
         return it->second.relationship;
     }
