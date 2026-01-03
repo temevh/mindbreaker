@@ -65,9 +65,9 @@ public:
     // NPC relationships
     bool hasMetNPC(const std::string& npc) const;
     void meetNPC(const std::string& npc);
-    
     int getNPCRelationship(const std::string& npc) const;
-    void setNPCRelationship(const std::string& npc, int delta);
+    void setNPCRelationship(const std::string& npcName, int value);
+    
 
     std::string getNPCDialogueNode(const std::string& npc) const;
     void setNPCDialogueNode(const std::string& npc, const std::string& node);

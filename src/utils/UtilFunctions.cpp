@@ -171,6 +171,7 @@ void runNPCDialogue(GameState& gameState,
                     const json& dialogueData)
 {
     NPCState& npc = gameState.getNPCState(npcId);
+    gameState.meetNPC(npcId);
 
     while (true){
 
@@ -220,4 +221,5 @@ void runNPCDialogue(GameState& gameState,
 
         gameState.recordChoice(npcId, choice["text"]);
     }
+    return;
 }
