@@ -194,9 +194,12 @@ void runNPCDialogue(GameState& gameState,
         }
         const json& node = dialogueData.at(nodeKey);
 
-        std::cout << npc.name << ": "; 
         // Display text
-        writeText(node["text"].get<std::string>());
+        std::string text = node["text"].get<std::string>();
+        
+        text = replaceAll(text, "{name}", npc.name);
+        std::cout << npc.name << ": "; 
+        writeText(text);
         
         //  No choices → end interaction
         if (!node.contains("choices") || node["choices"].empty()) {
@@ -227,7 +230,7 @@ void runNPCDialogue(GameState& gameState,
             npc.relationship += choice["relationship"].get<int>();
         }
 
-        if (choice.contains("ask_name") && choice["ask_name"].get<bool>()){
+        if (choice.contains("reveal_name") && choice["reveal_name"].get<bool>()) {
             npc.name = npc.realName;
         }
         npc.dialogueNode = choice["next"].get<std::string>();
@@ -235,4 +238,17 @@ void runNPCDialogue(GameState& gameState,
         gameState.recordChoice(npcId, npc.dialogueNode);
     }
     return;
+}
+
+std::string replaceAll(
+    std::string text,
+    const std::string& from,
+    const std::string& to
+){
+    size_t start = 0;
+    while ((start = text.find(from, start)) != std::string::npos){
+        text.replace(start, from.length(), to);
+        start += to.length();
+    }
+    return text;
 }

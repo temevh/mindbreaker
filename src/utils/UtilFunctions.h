@@ -19,6 +19,7 @@ void initializeRandomSeed();
 std::string generateRandomName();
 void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues);
 void runNPCDialogue(GameState& gameState, const std::string& npcName, const json& dialogueData);
+std::string replaceAll(std::string text, const std::string& from, const std::string& to);
 
 std::string generateId();
 

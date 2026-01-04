@@ -1,5 +1,5 @@
 {
-  "firstEncounterPrompt": "REPLACE",
+  "firstEncounterPrompt": "Your skull throbs with every heartbeat. The room smells faintly of dust and something metallic. The others whisper among themselves, their voices dropping whenever you look their way. If you want answers, you’ll have to ask—carefully.",
   "start": {
     "text": "Grhmmmm… ugh… everything’s spinning…",
     "choices": [
@@ -60,7 +60,8 @@
     "choices": [
       {
         "text": "Do you have a name? Or should I just keep calling you ‘stranger’?",
-        "next": "ask_name"
+        "next": "ask_name",
+        "reveal_name": true
       },
       {
         "text": "So none of you know where this place is?",
@@ -79,10 +80,10 @@
 
   
   "ask_name": {
-    "text": "…Names feel dangerous right now. But fine. You can call me Rowan. No last name. I don’t even know if it’s really mine.",
+    "text": "…Names feel dangerous right now. But fine. You can call me {name}. No last name. I don’t even know if it’s really mine.",
     "choices": [
       {
-        "text": "Alright, Rowan. I’m glad someone’s at least being honest with me.",
+        "text": "Alright, {name}. I’m glad someone’s at least being honest with me.",
         "next": "name_trust",
         "relationship": 1
       },
