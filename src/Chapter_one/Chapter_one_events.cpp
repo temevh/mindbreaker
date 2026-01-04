@@ -14,9 +14,6 @@
 
 using json = nlohmann::json;
 
-json npcDialogue = loadJsonFromFile("npc_guard.json");
-
-
 std::string checkPocket() {
     std::vector<std::string> options = {"yes", "no"};
     std::string checked = selectionMenu("Check your pocket?", options);
@@ -134,6 +131,6 @@ void firstEncounter(Player& player, GameState& gameState, const nlohmann::json& 
         }
         
         // Interact with the selected NPC
-        interactWithNpc(npcs[selectedIndex], player, gameState, npcDialogue);
+        interactWithNpc(npcs[selectedIndex], player, gameState, dialogueData);
     }
 }

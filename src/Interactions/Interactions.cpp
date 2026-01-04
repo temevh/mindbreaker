@@ -13,7 +13,7 @@ int interactWithNpc(Character& npc, Character& player, GameState& gameState, con
 
     std::string selectedOption = selectionMenu("What do you want to do?", options);
     std::cout << "You chose to " << selectedOption << "." << std::endl;
-    
+    clearScreen();
     if (selectedOption == "Talk"){
         runNPCDialogue(gameState, npcId, dialogueData);
         int relationship = gameState.getNPCRelationship(npcId);

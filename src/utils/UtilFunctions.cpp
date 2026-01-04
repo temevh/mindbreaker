@@ -200,6 +200,7 @@ void runNPCDialogue(GameState& gameState,
         
         const json& node = dialogueData[nodeKey];
         
+        std::cout << "Stranger: "; 
         // Display text
         writeText(node["text"].get<std::string>());
         
@@ -234,7 +235,7 @@ void runNPCDialogue(GameState& gameState,
 
         npc.dialogueNode = choice["next"].get<std::string>();
 
-        gameState.recordChoice(npcId, choice["text"]);
+        gameState.recordChoice(npcId, npc.dialogueNode);
     }
     return;
 }
