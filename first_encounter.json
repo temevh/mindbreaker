@@ -1,6 +1,5 @@
 {
-  "firstEncounterPrompt": "Your skull throbs with every heartbeat. The room smells faintly of dust and something metallic. The others whisper among themselves, their voices dropping whenever you look their way. If you want answers, you’ll have to ask—carefully.",
-
+  "firstEncounterPrompt": "REPLACE",
   "start": {
     "text": "Grhmmmm… ugh… everything’s spinning…",
     "choices": [

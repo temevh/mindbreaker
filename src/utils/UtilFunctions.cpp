@@ -161,11 +161,8 @@ std::string generateId(){
 }
 
 std::string generateRandomName(){
-    const char* firstNames[7] = {"Xavier", "Hunter", "Leo", "Sam", "Winston", "Juppe15", "Lellu"};
-    //const char* lastNames[5] = {"Smith", "Lee", "Oswald", "Dong", "Argal"};
-    //std::string* names = new std::string[2];
+    const char* firstNames[9] = {"Xavier", "Hunter", "Leo", "Sam", "Winston", "Rowan", "XE-15B", "Cerces", "Apollo"};
     std::string name = firstNames[generateRandomNumber(5)];
-    //names[1] = lastNames[generateRandomNumber(5)];
     return name;
 }
 
@@ -189,18 +186,15 @@ void runNPCDialogue(GameState& gameState,
     gameState.meetNPC(npcId);
 
     while (true){
-
-        
         const std::string& nodeKey = npc.dialogueNode;
-        
+
         if (!dialogueData.contains(nodeKey)) {
-            std::cerr << "Dialogue node not found: " << nodeKey << "\n";
+            std::cerr << "Dialogue node not found: " << nodeKey << std::endl;
             return;
         }
-        
-        const json& node = dialogueData[nodeKey];
-        
-        std::cout << "Stranger: "; 
+        const json& node = dialogueData.at(nodeKey);
+
+        std::cout << npc.name << ": "; 
         // Display text
         writeText(node["text"].get<std::string>());
         
@@ -233,6 +227,9 @@ void runNPCDialogue(GameState& gameState,
             npc.relationship += choice["relationship"].get<int>();
         }
 
+        if (choice.contains("ask_name") && choice["ask_name"].get<bool>()){
+            npc.name = npc.realName;
+        }
         npc.dialogueNode = choice["next"].get<std::string>();
 
         gameState.recordChoice(npcId, npc.dialogueNode);

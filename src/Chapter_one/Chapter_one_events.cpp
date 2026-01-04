@@ -129,7 +129,8 @@ void firstEncounter(Player& player, GameState& gameState, const nlohmann::json& 
         NPCState& state = gameState.getNPCState(npcId);
         if(!state.hasMet){
             state.id = npcId;
-            state.name = npcName;
+            state.name = "Stranger";
+            state.realName = npcName;
             state.relationship = 0;
             state.hasMet = true;
         }
