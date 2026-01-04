@@ -46,34 +46,32 @@ char getch() {
     return buf;
 }
 
-std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
+std::string selectionMenu(const std::string& prompt,
+                  const std::vector<std::string>& options)
+{
     int selected = 0;
     bool selecting = true;
 
     while (selecting) {
         clearScreen();
-        std::cout << prompt << std::endl;
-        for (int i = 0; i < numChoices; ++i) {
-            if (i == selected) {
-                std::cout << "> " << options[i] << std::endl;
-            } else {
-                std::cout << "  " << options[i] << std::endl;
-            }
+        std::cout << prompt << "\n\n";
+
+        for (int i = 0; i < options.size(); ++i) {
+            if (i == selected)
+                std::cout << "> " << options[i] << "\n";
+            else
+                std::cout << "  " << options[i] << "\n";
         }
 
         char c = getch();
-        if (c == '\033') { // if the first value is esc
-            getch(); // skip the [
-            switch (getch()) { // the real value
+        if (c == '\033') {
+            getch();
+            switch (getch()) {
                 case KEY_UP:
-                    if (selected > 0) {
-                        --selected;
-                    }
+                    if (selected > 0) --selected;
                     break;
                 case KEY_DOWN:
-                    if (selected < numChoices - 1) {
-                        ++selected;
-                    }
+                    if (selected < options.size() - 1) ++selected;
                     break;
             }
         } else if (c == KEY_ENTER) {
@@ -81,9 +79,8 @@ std::string selectionMenu(std::string prompt, char* options[], int numChoices) {
         }
     }
 
-    //std::cout << "Selected: " << options[selected] << std::endl;
     clearScreen();
-    return std::string(options[selected]); // Ensure correct return type
+    return options[selected];
 }
 
 void pressEnter(){
@@ -95,8 +92,8 @@ void pressEnter(){
 void writeText(std::string text){
     int sanity = gameState->getPlayer().getSanity();
     std::string s = text;
+    int textSpeed = 30;
 
-    int textSpeed;
 
 
     if(sanity == 10){
@@ -148,12 +145,24 @@ int generateRandomNumber(int maxNumber){
     return num;
 }
 
+std::string generateId(){
+    static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+    std::string tmp_s;
+    tmp_s.reserve(8);
+
+    for (int i = 0; i < 8; ++i) {
+        tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
+    }
+    
+    return tmp_s;
+}
+
 std::string generateRandomName(){
-    const char* firstNames[7] = {"Xavier", "Hunter", "Leo", "Sam", "Winston", "Juppe15", "Lellu"};
-    //const char* lastNames[5] = {"Smith", "Lee", "Oswald", "Dong", "Argal"};
-    //std::string* names = new std::string[2];
+    const char* firstNames[9] = {"Xavier", "Hunter", "Leo", "Sam", "Winston", "Rowan", "XE-15B", "Cerces", "Apollo"};
     std::string name = firstNames[generateRandomNumber(5)];
-    //names[1] = lastNames[generateRandomNumber(5)];
     return name;
 }
 
@@ -167,4 +176,79 @@ void dialogueText(std::vector<std::pair<std::string, std::string>> dialogues) {
             writeText(pair.first);
         }
     }
+}
+
+void runNPCDialogue(GameState& gameState,
+                    const std::string& npcId,
+                    const json& dialogueData)
+{
+    NPCState& npc = gameState.getNPCState(npcId);
+    gameState.meetNPC(npcId);
+
+    while (true){
+        const std::string& nodeKey = npc.dialogueNode;
+
+        if (!dialogueData.contains(nodeKey)) {
+            std::cerr << "Dialogue node not found: " << nodeKey << std::endl;
+            return;
+        }
+        const json& node = dialogueData.at(nodeKey);
+
+        // Display text
+        std::string text = node["text"].get<std::string>();
+        
+        text = replaceAll(text, "{name}", npc.name);
+        std::cout << npc.name << ": "; 
+        writeText(text);
+        
+        //  No choices → end interaction
+        if (!node.contains("choices") || node["choices"].empty()) {
+            return;
+        }
+        
+        // Collect options
+        std::vector<std::string> options;
+        for (const auto& choice : node["choices"]) {
+            options.push_back(choice["text"]);
+        }
+        
+        //Player selection
+        std::string result = selectionMenu("Choose your response", options);
+
+        int selected = 0;
+        for (size_t i = 0; i < options.size(); i++){
+            if (options[i] == result){
+                selected = i;
+                break;
+            }
+        }
+
+        const json& choice = node["choices"][selected];
+
+        //Relationship change
+        if (choice.contains("relationship")){
+            npc.relationship += choice["relationship"].get<int>();
+        }
+
+        if (choice.contains("reveal_name") && choice["reveal_name"].get<bool>()) {
+            npc.name = npc.realName;
+        }
+        npc.dialogueNode = choice["next"].get<std::string>();
+
+        gameState.recordChoice(npcId, npc.dialogueNode);
+    }
+    return;
+}
+
+std::string replaceAll(
+    std::string text,
+    const std::string& from,
+    const std::string& to
+){
+    size_t start = 0;
+    while ((start = text.find(from, start)) != std::string::npos){
+        text.replace(start, from.length(), to);
+        start += to.length();
+    }
+    return text;
 }

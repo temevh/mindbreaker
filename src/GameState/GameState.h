@@ -5,11 +5,21 @@
 #include <vector>
 #include <map>
 #include <memory>
+#include <unordered_map>
 #include "../Player/Player.h"
 #include "nlohmann/json.hpp"
 
 class GameState; 
 extern GameState* gameState;
+
+struct NPCState {
+    std::string name = "Stranger";
+    std::string realName;
+    std::string id = "";
+    bool hasMet = false;
+    int relationship = 0;
+    std::string dialogueNode = "start";
+};
 
 class GameState
 {
@@ -18,6 +28,7 @@ private:
     int currentChapter;
     std::vector<int> completedChapters;
     std::map<std::string, bool> storyFlags;
+    std::unordered_map<std::string, NPCState> npcStates;
     using Choice = std::pair<std::string, std::string>;
     std::vector<Choice> choicesHistory;
     std::map<std::string, int> npcRelationships;
@@ -49,10 +60,20 @@ public:
     const std::vector<GameState::Choice> &getChoicesHistory() const;
     std::string getLastChoice() const;
 
+    // NPC states
+    NPCState& getNPCState(const std::string& npc);
+    const NPCState& getNPCState(const std::string& npc) const;
+
     // NPC relationships
-    void setNPCRelationship(const std::string &npcName, int value);
-    int getNPCRelationship(const std::string &npcName) const;
-    void modifyNPCRelationship(const std::string &npcName, int delta);
+    bool hasMetNPC(const std::string& npc) const;
+    void meetNPC(const std::string& npc);
+    int getNPCRelationship(const std::string& npc) const;
+    void setNPCRelationship(const std::string& npcName, int value);
+    
+
+    std::string getNPCDialogueNode(const std::string& npc) const;
+    void setNPCDialogueNode(const std::string& npc, const std::string& node);
+
 
     // Game variables (for counters, timers, etc.)
     void setGameVariable(const std::string &varName, int value);

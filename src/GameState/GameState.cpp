@@ -73,21 +73,36 @@ std::string GameState::getLastChoice() const {
     return "";
 }
 
+// NPC states
+NPCState& GameState::getNPCState(const std::string& npc) {
+    return npcStates[npc]; // creates if missing
+}
+
+const NPCState& GameState::getNPCState(const std::string& npc) const {
+    return npcStates.at(npc); // throws if missing (good for const)
+}
+
 // NPC relationships
+bool GameState::hasMetNPC(const std::string& npc) const {
+    auto it = npcStates.find(npc);
+    return it != npcStates.end() && it->second.hasMet;
+}
+
+void GameState::meetNPC(const std::string& npc) {
+    npcStates[npc].hasMet = true;
+}
+
+
 void GameState::setNPCRelationship(const std::string& npcName, int value) {
     npcRelationships[npcName] = value;
 }
 
-int GameState::getNPCRelationship(const std::string& npcName) const {
-    auto it = npcRelationships.find(npcName);
-    if (it != npcRelationships.end()) {
-        return it->second;
+int GameState::getNPCRelationship(const std::string& npcId) const {
+    auto it = npcStates.find(npcId);
+    if (it != npcStates.end()) {
+        return it->second.relationship;
     }
     return 0;
-}
-
-void GameState::modifyNPCRelationship(const std::string& npcName, int delta) {
-    npcRelationships[npcName] += delta;
 }
 
 // Game variables

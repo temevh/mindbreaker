@@ -13,6 +13,6 @@ using json = nlohmann::json;
 std::string checkPocket();
 void twoDoors(GameState& gameState);
 int numbersMinigame(GameState& gameState);
-void firstEncounter(Player& player, nlohmann::json dialogueData);
+void firstEncounter(Player& player, GameState& gameState, const nlohmann::json& dialogueData);
 
 #endif

@@ -1,0 +1,188 @@
+{
+  "firstEncounterPrompt": "Your skull throbs with every heartbeat. The room smells faintly of dust and something metallic. The others whisper among themselves, their voices dropping whenever you look their way. If you want answers, you’ll have to ask—carefully.",
+  "start": {
+    "text": "Grhmmmm… ugh… everything’s spinning…",
+    "choices": [
+      {
+        "text": "Hello? I don’t mean any trouble.",
+        "next": "neutral_intro",
+        "relationship": 0
+      },
+      {
+        "text": "You don’t look great. Are you injured?",
+        "next": "ok_intro",
+        "relationship": 0
+      },
+      {
+        "text": "*Slowly take out the letter and show it to them*",
+        "next": "letter_option",
+        "relationship": 1,
+        "requires": { "item": "letter" }
+      }
+    ]
+  },
+
+  "neutral_intro": {
+    "text": "…You actually woke up too, huh? Great. Another one. Who are you supposed to be, and why are you here?",
+    "choices": [
+      {
+        "text": "I wish I knew. I woke up alone in a room and followed the only door I could find.",
+        "next": "introduce_option",
+        "relationship": 1
+      },
+      {
+        "text": "Funny. I was about to ask you the exact same thing.",
+        "next": "rude_option",
+        "relationship": -2
+      }
+    ]
+  },
+
+  "ok_intro": {
+    "text": "Injured? No. Confused? Trapped? Probably drugged? Yeah. I’d say that about covers it.",
+    "choices": [
+      {
+        "text": "So you don’t remember how you got here either?",
+        "next": "introduce_option",
+        "relationship": 1
+      },
+      {
+        "text": "You don’t have to snap at me. We’re both trying to figure this out.",
+        "next": "rude_option",
+        "relationship": -1
+      }
+    ],
+    "relationship": -1
+  },
+
+  "introduce_option": {
+    "text": "…No. Last thing I remember is going to sleep. Next thing I know, I wake up here with the worst headache of my life. Same story with most of the others.",
+    "choices": [
+      {
+        "text": "Do you have a name? Or should I just keep calling you ‘stranger’?",
+        "next": "ask_name",
+        "reveal_name": true
+      },
+      {
+        "text": "So none of you know where this place is?",
+        "next": "where_are_we"
+      },
+      {
+        "text": "How many people are here exactly?",
+        "next": "who_are_they"
+      },
+      {
+        "text": "What about that door behind us—has anyone tried opening it?",
+        "next": "about_exit"
+      }
+    ]
+  },
+
+  
+  "ask_name": {
+    "text": "…Names feel dangerous right now. But fine. You can call me {name}. No last name. I don’t even know if it’s really mine.",
+    "choices": [
+      {
+        "text": "Alright, {name}. I’m glad someone’s at least being honest with me.",
+        "next": "name_trust",
+        "relationship": 1
+      },
+      {
+        "text": "That doesn’t sound convincing. You sure that’s your name?",
+        "next": "name_doubt",
+        "relationship": -1
+      },
+      {
+        "text": "Fair enough. Let’s focus on getting out of here.",
+        "next": "where_are_we"
+      }
+    ]
+  },
+
+    "name_trust": {
+    "text": "Honest as I can be. That’s more than some people here are offering. Just… don’t spread it around. Not yet.",
+    "choices": [
+      {
+        "text": "Understood. So—about this place.",
+        "next": "where_are_we"
+      },
+      {
+        "text": "Why the secrecy? Afraid of someone?",
+        "next": "suspicious_person"
+      }
+    ]
+  },
+
+  "name_doubt": {
+    "text": "Believe it or don’t. I’m not here to convince you. When memories start coming back, maybe we’ll both have better answers.",
+    "choices": [
+      {
+        "text": "Alright. No need to get defensive.",
+        "next": "introduce_option"
+      },
+      {
+        "text": "That tells me more than you think.",
+        "next": "hostile_end",
+        "relationship": -1
+      }
+    ]
+  },
+
+  "where_are_we": {
+    "text": "If anyone knows, they’re not talking. No windows. No clocks. The walls feel… wrong somehow. Like this place wasn’t meant to be lived in.",
+    "choices": [
+      {
+        "text": "Wrong how?",
+        "next": "wrong_how"
+      },
+      {
+        "text": "So we’re prisoners.",
+        "next": "prisoners_realization"
+      }
+    ]
+  },
+
+  "who_are_they": {
+    "text": "A handful. Some pacing, some sitting in shock. Everyone’s pretending to stay calm, but you can see it in their eyes—they’re scared.",
+    "choices": [
+      {
+        "text": "Anyone standing out? Someone who seems to know more than they let on?",
+        "next": "suspicious_person"
+      },
+      {
+        "text": "Has anyone… panicked yet?",
+        "next": "panic_story"
+      }
+    ]
+  },
+
+  "about_exit": {
+    "text": "Locked. No handle on the other side. Someone tried forcing it earlier—didn’t end well. After that, people stopped trying.",
+    "choices": [
+      {
+        "text": "‘Didn’t end well’ how?",
+        "next": "didnt_end_well"
+      },
+      {
+        "text": "So we wait.",
+        "next": "wait_response"
+      }
+    ]
+  },
+
+  "rude_option": {
+    "text": "Careful. Acting tough won’t get you answers here. People are already on edge, and trust is in short supply.",
+    "choices": [
+      {
+        "text": "…Alright. Let’s reset. No hostility.",
+        "next": "introduce_option",
+        "relationship": 1
+      },
+      {
+        "text": "If trust is so important, maybe you should start by telling me the truth.",
+        "next": "hostile_end",
+        "relationship": -2
+      }
+    ]
+  }
+}

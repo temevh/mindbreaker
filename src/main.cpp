@@ -15,30 +15,32 @@ int main() {
     GameState localGameState(player);
     gameState = &localGameState; // Set the global pointer
     
-    std::string prompt = "Are you ready?";
-    char* options[2] = {"yes", "no"};
+    //std::string prompt = "Are you ready?";
+    //char* options[2] = {"yes", "no"};
+//
+    //std::string ready = selectionMenu(prompt, options, 2);
+    //if (ready == "yes") {
+    //    clearScreen();
+    //    std::string prompt = "Select difficulty";
+    //    char* options[3] = {"easy", "medium", "hard"};
+    //    std::string difficulty = selectionMenu(prompt, options, 3);
+    //    if(difficulty == "easy"){
+    //        gameState->setDifficulty(1);
+    //    }else if (difficulty == "medium")
+    //    {
+    //        gameState->setDifficulty(2);
+    //    }else if (difficulty == "hard"){
+    //        gameState->setDifficulty(3);
+    //    }
+    //    
+    //    //Go to chapter one
+    //    chapterOneMain(localGameState);
+    //} else {
+    //    std::cout << "\nMaybe next time!" << std::endl;
+    //    return 0;
+    //}
 
-    std::string ready = selectionMenu(prompt, options, 2);
-    if (ready == "yes") {
-        clearScreen();
-        std::string prompt = "Select difficulty";
-        char* options[3] = {"easy", "medium", "hard"};
-        std::string difficulty = selectionMenu(prompt, options, 3);
-        if(difficulty == "easy"){
-            gameState->setDifficulty(1);
-        }else if (difficulty == "medium")
-        {
-            gameState->setDifficulty(2);
-        }else if (difficulty == "hard"){
-            gameState->setDifficulty(3);
-        }
-        
-        //Go to chapter one
-        chapterOneMain(localGameState);
-    } else {
-        std::cout << "\nMaybe next time!" << std::endl;
-        return 0;
-    }
+    chapterOneMain(localGameState);
     
     
     return 0;
