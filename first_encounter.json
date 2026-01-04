@@ -60,6 +60,10 @@
     "text": "…No. Last thing I remember is going to sleep. Next thing I know, I wake up here with the worst headache of my life. Same story with most of the others.",
     "choices": [
       {
+        "text": "Do you have a name? Or should I just keep calling you ‘stranger’?",
+        "next": "ask_name"
+      },
+      {
         "text": "So none of you know where this place is?",
         "next": "where_are_we"
       },
@@ -70,6 +74,56 @@
       {
         "text": "What about that door behind us—has anyone tried opening it?",
         "next": "about_exit"
+      }
+    ]
+  },
+
+  
+  "ask_name": {
+    "text": "…Names feel dangerous right now. But fine. You can call me Rowan. No last name. I don’t even know if it’s really mine.",
+    "choices": [
+      {
+        "text": "Alright, Rowan. I’m glad someone’s at least being honest with me.",
+        "next": "name_trust",
+        "relationship": 1
+      },
+      {
+        "text": "That doesn’t sound convincing. You sure that’s your name?",
+        "next": "name_doubt",
+        "relationship": -1
+      },
+      {
+        "text": "Fair enough. Let’s focus on getting out of here.",
+        "next": "where_are_we"
+      }
+    ]
+  },
+
+    "name_trust": {
+    "text": "Honest as I can be. That’s more than some people here are offering. Just… don’t spread it around. Not yet.",
+    "choices": [
+      {
+        "text": "Understood. So—about this place.",
+        "next": "where_are_we"
+      },
+      {
+        "text": "Why the secrecy? Afraid of someone?",
+        "next": "suspicious_person"
+      }
+    ]
+  },
+
+  "name_doubt": {
+    "text": "Believe it or don’t. I’m not here to convince you. When memories start coming back, maybe we’ll both have better answers.",
+    "choices": [
+      {
+        "text": "Alright. No need to get defensive.",
+        "next": "introduce_option"
+      },
+      {
+        "text": "That tells me more than you think.",
+        "next": "hostile_end",
+        "relationship": -1
       }
     ]
   },

@@ -13,6 +13,7 @@ class GameState;
 extern GameState* gameState;
 
 struct NPCState {
+    std::string name = "";
     std::string id = "";
     bool hasMet = false;
     int relationship = 0;

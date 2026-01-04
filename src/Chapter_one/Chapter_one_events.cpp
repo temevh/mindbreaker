@@ -125,9 +125,13 @@ void firstEncounter(Player& player, GameState& gameState, const nlohmann::json& 
         // Initialize NPC relationship if not already set
         std::string npcId = npcs[selectedIndex].getCharId();
         std::string npcName = npcs[selectedIndex].getCharName();
-        if (!gameState.hasStoryFlag("met_" + npcId)) {
-            gameState.setNPCRelationship(npcId, 0);
-            gameState.setStoryFlag("met_" + npcName + "_" + npcId, true);
+
+        NPCState& state = gameState.getNPCState(npcId);
+        if(!state.hasMet){
+            state.id = npcId;
+            state.name = npcName;
+            state.relationship = 0;
+            state.hasMet = true;
         }
         
         // Interact with the selected NPC
